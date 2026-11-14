@@ -1,0 +1,281 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Antonio', Impact, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  section[id],
+  footer[id] {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+.font-editorial-serif {
+  font-family: var(--font-serif);
+}
+
+.font-poster-display {
+  font-family: var(--font-display);
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 34s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ken-burns-slow {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.06) translate3d(-0.6%, -0.4%, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns-slow 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-ken-burns {
+    animation: none;
+  }
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+@keyframes rw-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-rw-fill {
+  transform-origin: left;
+  animation: rw-fill 5s linear forwards;
+}
+
+/* ==========================================================================
+   MotionSites 10/10 Runway Exhibition Keyframes & Micro-Interactions
+   ========================================================================== */
+
+/* Breathing floor spotlight */
+@keyframes rw-breathe {
+  0%, 100% {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+.animate-rw-breathe {
+  animation: rw-breathe 9s ease-in-out infinite;
+}
+
+/* Cinematic stage light sweep on look transitions */
+@keyframes rw-sweep {
+  0% {
+    transform: translateX(-140%) skewX(-14deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(340%) skewX(-14deg);
+    opacity: 0;
+  }
+}
+
+.animate-rw-sweep {
+  animation: rw-sweep 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* Dual ripple ring for interactive hotspot pins */
+@keyframes rw-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+.animate-rw-ring {
+  animation: rw-ring 2.6s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
+.animate-rw-ring-delayed {
+  animation: rw-ring 2.6s cubic-bezier(0.2, 0.6, 0.3, 1) 1.3s infinite;
+}
+
+/* Spring pop-in for hotspot pins */
+@keyframes rw-pin-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-rw-pin-in {
+  animation: rw-pin-in 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+/* Pendulum swing for luxury product clothing tag */
+@keyframes rw-swing {
+  0% { transform: rotate(-16deg); }
+  25% { transform: rotate(11deg); }
+  45% { transform: rotate(-7deg); }
+  65% { transform: rotate(4deg); }
+  82% { transform: rotate(-2deg); }
+  100% { transform: rotate(0); }
+}
+
+.group:hover .animate-rw-swing {
+  animation: rw-swing 1.4s cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+/* Editorial curtain reveal for product thumbnails */
+@keyframes rw-curtain {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+.animate-rw-curtain {
+  animation: rw-curtain 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Decelerating image settle zoom from 1.22x */
+@keyframes rw-media-in {
+  from {
+    transform: scale(1.2);
+    filter: saturate(0.6) brightness(1.06);
+  }
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+
+.animate-rw-media-in {
+  animation: rw-media-in 1.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Staggered blur-to-focus upward float for product items */
+@keyframes rw-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.animate-rw-item-in {
+  animation: rw-item-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Letter spacing collapse for look titles */
+@keyframes rw-name-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.32em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: normal;
+  }
+}
+
+.animate-rw-name-in {
+  animation: rw-name-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) backwards 0.1s;
+}
+
+/* Shockwave burst on adding piece to bag */
+@keyframes rw-burst {
+  from {
+    transform: scale(0.55);
+    opacity: 0.95;
+  }
+  to {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+.animate-rw-burst {
+  animation: rw-burst 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Button specular shine sweep */
+.rw-sheen-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.rw-sheen-sweep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.32) 50%, transparent);
+  transform: translateX(-140%) skewX(-18deg);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.rw-sheen-sweep:hover::before {
+  transform: translateX(280%) skewX(-18deg);
+}
