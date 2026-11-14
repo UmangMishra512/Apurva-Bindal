@@ -10,12 +10,37 @@ export function HeroSection() {
       aria-label="Apurva Bridal Showroom Hero"
       className="relative flex min-h-[620px] h-[88dvh] max-h-[840px] w-full items-end overflow-hidden bg-[#1D0408]"
     >
-      {/* Ambient Ken Burns Motion Backdrop */}
-      <img
-        src="/images/hero-showroom.jpg"
-        alt="Inside Apurva Bridal Lehanga & Sarees showroom at Khetan Super Market, Patna"
-        className="animate-ken-burns absolute inset-0 size-full object-cover object-center opacity-85"
+      {/* Zero-latency blur backdrop (paints in 0ms before high-res image loads) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[#1D0408] bg-cover bg-center filter blur-md scale-105 opacity-60 pointer-events-none"
+        style={{
+          backgroundImage:
+            'url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABsSFBcUERsXFhceHBsgKEIrKCUlKFE6PTBCYFVlZF9VXVtqeJmBanGQc1tdhbWGkJ6jq62rZ4C8ybqmx5moq6T/2wBDARweHigjKE4rK06kbl1upKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKT/wAARCAASACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCJriNLSNEUhtuMrglKrxCJk2KzxuT94rjA9+aqRiRt7hs8Z4Gf0qeyR5o5crnkfWsmjZFiSRPJETrJIVb0C5x71G1wyoBHbRxkDgnk/rU4sLiQMc+WM5BYcVFPYXKopVAxHU5xn+VCBi6CiuxDKG57iujVECFQq7fTHFFFV1I6Ih08AxsxHOTz+NE5O8jJoopLYHuf/9k=")',
+        }}
       />
+
+      {/* Responsive & Preloaded Picture Element */}
+      <picture className="absolute inset-0 size-full pointer-events-none">
+        <source
+          media="(max-width: 768px)"
+          srcSet="/images/hero-showroom-mobile.webp"
+          type="image/webp"
+        />
+        <source
+          media="(min-width: 769px)"
+          srcSet="/images/hero-showroom-desktop.webp"
+          type="image/webp"
+        />
+        <img
+          src="/images/hero-showroom.jpg"
+          alt="Inside Apurva Bridal Lehanga & Sarees showroom at Khetan Super Market, Patna"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          className="animate-ken-burns absolute inset-0 size-full object-cover object-center opacity-85 transition-opacity duration-300"
+        />
+      </picture>
 
       {/* Parted Royal Crimson Stage Curtains Framing the Viewport */}
       <motion.div
