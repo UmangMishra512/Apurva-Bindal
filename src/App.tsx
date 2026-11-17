@@ -7,7 +7,6 @@ import type {
   DeckCardItem,
   LookbookEntry,
   RackBlouse,
-  WeaveSilkOption,
 } from './data/storeData';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -18,7 +17,6 @@ import { CardDeckSection } from './components/CardDeckSection';
 import { RackCarouselSection } from './components/RackCarouselSection';
 import { EditorialCollageSection } from './components/EditorialCollageSection';
 import { BridalStoriesSection } from './components/BridalStoriesSection';
-import { ThreeSilksWeaveSection } from './components/ThreeSilksWeaveSection';
 import { ShowroomFooter } from './components/ShowroomFooter';
 import { BagDrawer } from './components/BagDrawer';
 
@@ -91,18 +89,6 @@ export function App() {
     });
   }
 
-  function handleAddWeaveBundle(selected: WeaveSilkOption[], discountedPrice: number) {
-    const names = selected.map((s) => s.name).join(' + ');
-    upsertBagItem({
-      id: `weave-${selected.map((s) => s.id).join('-')}`,
-      name: 'Three Silks, One Weave Trousseau',
-      meta: `${names} • 10% Off`,
-      price: discountedPrice,
-      image: selected[0].image,
-    });
-    setIsBagOpen(true);
-  }
-
   function handleUpdateQty(id: string, delta: number) {
     setBagItems((prev) =>
       prev
@@ -135,7 +121,6 @@ export function App() {
           <RackCarouselSection onAddBlouse={handleAddBlouse} />
           <EditorialCollageSection />
           <BridalStoriesSection onAddStoryItem={handleAddStoryItem} />
-          <ThreeSilksWeaveSection onAddWeaveBundle={handleAddWeaveBundle} />
         </main>
         <ShowroomFooter />
         <BagDrawer

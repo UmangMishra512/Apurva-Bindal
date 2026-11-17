@@ -103,7 +103,7 @@ export const MARQUEE_ITEMS = [
   'TRY THE LOOK • Five bridal edits styled head to toe',
   'THE RACK • Custom choli fitting in 48 hours at Khetan Market',
   'BRIDAL STORIES • Heirloom Banarasi & Zardozi silhouettes',
-  'THREE SILKS, ONE WEAVE • Pick any three weaves for 10% off',
+  'PATNA SHOWROOM • Shop B-43 & B-44, Khetan Super Market',
 ] as const;
 
 export const ARCHIVE_MOODS: ArchiveMood[] = [

@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { id: 'rack', label: 'The Rack' },
   { id: 'muse', label: 'The Muse' },
   { id: 'bridal-stories', label: 'Bridal' },
-  { id: 'weave', label: 'The Weave' },
 ] as const;
 
 interface NavbarProps {
